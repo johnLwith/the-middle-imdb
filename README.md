@@ -4,8 +4,7 @@ A .NET application that crawls episode information for "The Middle" TV show from
 
 ## Prerequisites
 
-- .NET 6.0 SDK or later
-- Node.js (for Playwright installation)
+- .NET 8.0 SDK
 
 ## Installation
 
@@ -46,18 +45,9 @@ The application generates a JSON file (`TheMiddleImdb.json`) containing episode 
 
 ```json
 {
-  "seasons": [
-    {
-      "seasonNumber": 1,
-      "episodes": [
-        {
-          "episodeNumber": 1,
-          "title": "Episode Title",
-          "rating": 8.5,
-          "votes": 1234
-        }
-      ]
-    }
+  "1":[
+        "title":"S1.E1 ∙ Pilot"
+        "description: "Sue tries out for show choir with disastrous results. Frankie desperately tries to close a sale with disastrous results. Brick has trouble relating to his teacher with odd results."
   ]
 }
 ```
