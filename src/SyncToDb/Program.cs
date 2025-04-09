@@ -45,14 +45,15 @@ class Program
 
         // Prepare the insert command
         const string insertSql = @"
-            INSERT INTO episodes (season_number, episode_number, title, description)
-            VALUES (@season, @episode, @title, @description)
-            ON CONFLICT (season_number, episode_number) DO UPDATE 
+            INSERT INTO episodes (id, season_number, episode_number, title, description)
+            VALUES (@id, @season, @episode, @title, @description)
+            ON CONFLICT (id) DO UPDATE 
             SET title = EXCLUDED.title, description = EXCLUDED.description";
 
         await using var cmd = new NpgsqlCommand(insertSql, connection);
 
         // Add parameters
+        cmd.Parameters.AddWithValue("id", "");
         cmd.Parameters.AddWithValue("season", 0);
         cmd.Parameters.AddWithValue("episode", 0);
         cmd.Parameters.AddWithValue("title", "");
@@ -120,6 +121,7 @@ class Program
                     continue;
                 }
 
+                cmd.Parameters["id"].Value = $"tm{parsedSeason}{parsedEpisode}";
                 cmd.Parameters["season"].Value = parsedSeason;
                 cmd.Parameters["episode"].Value = parsedEpisode;
                 // "S1.E1 ∙ Pilot"

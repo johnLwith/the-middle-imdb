@@ -1,6 +1,6 @@
 -- Create episodes table
 CREATE TABLE IF NOT EXISTS episodes (
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(10) PRIMARY KEY,
     season_number INTEGER NOT NULL,
     episode_number INTEGER NOT NULL,
     title VARCHAR(255) NOT NULL,
